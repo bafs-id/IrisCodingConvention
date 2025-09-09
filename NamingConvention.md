@@ -27,8 +27,7 @@ Our conventions are built on two primary casing styles that must be applied cons
 | Files & Directories    | PascalCase                               | `CustomerService.cs`, `/Services`                 |
 | Class, Struct, Record  | PascalCase (Noun/Noun Phrase)            | `public class OrderProcessor { }`                 |
 | Interface              | PascalCase, prefixed with I              | `public interface ILogger { }`                    |
-| Enum (Standard)        | PascalCase (Singular Noun)               | `public enum Status { Pending, Complete }`        |
-| Enum (Flags)           | PascalCase (Plural Noun)                 | `[Flags] public enum Permissions { Read, Write }` |
+| Enum                   | PascalCase                               | `public enum Status { Pending, Complete }`        |
 | Method                 | PascalCase (Verb/Verb Phrase)            | `public void CalculateTotal() { }`                |
 | Property               | PascalCase (Noun/Noun Phrase)            | `public string CustomerName { get; set; }`        |
 | Event                  | PascalCase (Verb Phrase)                 | `public event EventHandler StatusChanged;`        |
