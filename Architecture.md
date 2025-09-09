@@ -1,11 +1,19 @@
 # System Architecture
 
-## Overview
+##### App Layer - Dispatch Service
 
-This document describes the three-layer architecture of the system, which consists of:
-- **Presentation Layer** - Dispatch/Controller
-- **App Layer** - Dispatch Service  
-- **Domain Layer** - Dispatch Repository
+The dispatch service layer manages dispatching operations:
+
+**Components:**
+
+- `DispatchModel` - Dispatch data model
+- `IDispatchService` - Service interface
+- `DispatchService` - Core dispatch service implementation
+
+**Example Functions:**
+
+- `CreateDispatch(CreateDispatchRequest request)`
+- `UpdateDispatch(UpdateDispatchRequest request)`
 
 ## Layer Structure
 
@@ -16,11 +24,12 @@ This document describes the three-layer architecture of the system, which consis
 The mobile service layer contains the core application logic:
 
 **Components:**
-- `ServiceOperatorModel` - Handles service operator data and operations
-- `MobileService` - Core mobile service implementation (implemented by Kotlin)
-- `MobileService.v2.0 REST API` - REST API interface for mobile services
 
-**Request Flow:**
+- `ServiceDetailsModel` - Handles service details data and operations
+- `IMobileService` - Core mobile service interface (implemented by Refit)
+
+**Example Functions:**
+
 - `CreateServiceDetails(CreateServiceDetailsRequest request)`
 - `UpdateServiceDetails(UpdateServiceDetailsRequest request)`
 
@@ -29,36 +38,34 @@ The mobile service layer contains the core application logic:
 The dispatch service layer manages dispatching operations:
 
 **Components:**
-- `DispatchModel` - Dispatch data model
-- `DispatchService` - Core dispatch service implementation (implemented)
-- `DispatchService` - Service interface
 
-**Request Flow:**
-- `CreateDispatch(CreateDispatchRequest request)` - Returns status
-- `UpdateDispatch(UpdateDispatchService request)` - Returns status
+- `DispatchModel` - Dispatch data model
+- `IDispatchService` - Service interface
+- `DispatchService` - Core dispatch service implementation
+
+**Example Functions:**
+
+- `CreateDispatch(CreateDispatchRequest request)`
+- `UpdateDispatch(UpdateDispatchService request)`
 
 ### Domain Layer - Dispatch Repository
 
 The repository layer handles data persistence and retrieval:
 
 **Components:**
+
 - `DispatchEntity` - Entity model for dispatch data
-- `DispatchRepository` - Repository interface (implemented)
+- `IDispatchRepository` - Repository interface
 - `DispatchRepository` - Data access implementation
 
 **Entity Operations:**
-- `CreateDispatch(DispatchEntity entity)` - Returns DBContext
-- `UpdateDispatch(DispatchEntity entity)` - Returns DBContext
+
+- `CreateDispatch(DispatchEntity entity)`
+- `UpdateDispatch(DispatchEntity entity)`
 
 ## Communication Flow
 
 1. **Presentation → App Layer**: The Dispatch/Controller sends requests to the Dispatch Service
 2. **App Layer → Domain Layer**: The Dispatch Service communicates with the Dispatch Repository for data operations
-3. **Mobile Service Integration**: The Mobile Service operates in parallel, handling mobile-specific operations through its REST API
-
-## Key Design Principles
-
-- **Separation of Concerns**: Each layer has distinct responsibilities
-- **Dependency Direction**: Dependencies flow downward (Presentation → App → Domain)
-- **Interface-based Design**: Services and repositories are defined through interfaces
-- **Request/Response Pattern**: Operations use typed request objects and
+3. **App Layer → App Layer**: The Dispatch Service can also call the Mobile Service for mobile-specific operations
+4. **Service Integration**: The Mobile Service operates both independently and as a dependency for the Dispatch Service
