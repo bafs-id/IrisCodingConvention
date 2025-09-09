@@ -1,27 +1,29 @@
 # System Architecture
 
-##### App Layer - Dispatch Service
+<img width="3230" height="918" alt="arch" src="https://github.com/user-attachments/assets/bb8bb58a-e779-4fc6-8bf3-3c6f697469d0" />
 
-The dispatch service layer manages dispatching operations:
+## Presentation Layer
+
+### Dispatch Controller
+
+The presentation layer handles HTTP requests and responses for dispatch operations
 
 **Components:**
 
-- `DispatchModel` - Dispatch data model
-- `IDispatchService` - Service interface
-- `DispatchService` - Core dispatch service implementation
+- `DispatchResponse` - Response model for dispatch operations
+- `DispatchController` - API controller handling dispatch endpoints
 
-**Example Functions:**
+**Controller Actions:**
 
-- `CreateDispatch(CreateDispatchRequest request)`
+- `CreateDispach(CreateDispatchRequest request)`
 - `UpdateDispatch(UpdateDispatchRequest request)`
+- `UpdateStatus(UpdateStatusRequest request)`
 
-## Layer Structure
+## App Layer
 
-<img width="3230" height="918" alt="arch" src="https://github.com/user-attachments/assets/bb8bb58a-e779-4fc6-8bf3-3c6f697469d0" />
+### Mobile Service
 
-### App Layer - Mobile Service
-
-The mobile service layer contains the core application logic:
+The mobile service layer contains the core application logic
 
 **Components:**
 
@@ -33,9 +35,9 @@ The mobile service layer contains the core application logic:
 - `CreateServiceDetails(CreateServiceDetailsRequest request)`
 - `UpdateServiceDetails(UpdateServiceDetailsRequest request)`
 
-### App Layer - Dispatch Service
+### Dispatch Service
 
-The dispatch service layer manages dispatching operations:
+The dispatch service layer manages dispatching operations
 
 **Components:**
 
@@ -48,9 +50,11 @@ The dispatch service layer manages dispatching operations:
 - `CreateDispatch(CreateDispatchRequest request)`
 - `UpdateDispatch(UpdateDispatchService request)`
 
-### Domain Layer - Dispatch Repository
+## Domain Layer
 
-The repository layer handles data persistence and retrieval:
+### Dispatch Repository
+
+The repository layer handles data persistence and retrieval
 
 **Components:**
 
@@ -62,6 +66,8 @@ The repository layer handles data persistence and retrieval:
 
 - `CreateDispatch(DispatchEntity entity)`
 - `UpdateDispatch(DispatchEntity entity)`
+
+---
 
 ## Communication Flow
 
