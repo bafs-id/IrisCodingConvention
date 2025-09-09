@@ -9,6 +9,8 @@ This document describes the three-layer architecture of the system, which consis
 
 ## Layer Structure
 
+<img width="3230" height="918" alt="arch" src="https://github.com/user-attachments/assets/bb8bb58a-e779-4fc6-8bf3-3c6f697469d0" />
+
 ### App Layer - Mobile Service
 
 The mobile service layer contains the core application logic:
